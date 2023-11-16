@@ -28,6 +28,11 @@ enum DCMotors {
     Motor3 = 2,
 }
 
+enum RobotMotors {
+    MotorLinks = 0,
+    MotorRechts = 2,
+}
+
 enum MotorControlMode {
     Position = 0,
     Velocity = 1,
@@ -133,6 +138,63 @@ namespace stokys {
         let voltage = i2cRead(REG_SUPPLY_VOLTAGE, 0x00, NumberFormat.UInt16LE);
         voltage = voltage / 1000.0;
         return voltage;
+    }
+
+    //*********************************************************************************************************************************************************************
+    /**
+     * Roboter Warte bis Angehalten
+     */
+    //% blockId=robotAwaitStop
+    //% weight=53
+    //% block="Warte bis angehalten"
+    //% group="Roboter"
+    //% inlineInputMode=inline
+    export function robotAwaitStop(): void {
+        const threshold = 1; // rpm
+        while (getRobotMaxSpeed() < threshold);
+        while (getRobotMaxSpeed() > threshold);
+        return
+    }
+
+    function getRobotMaxSpeed(): number {
+        let speed_left = motorGetSpeedBlock(DCMotors.Motor1);
+        let speed_right = motorGetSpeedBlock(DCMotors.Motor2);
+        return Math.max(Math.abs(speed_left), Math.abs(speed_right))
+    }
+
+    //*********************************************************************************************************************************************************************
+    /**
+     * Roboter Positionsdelta Vorgeben
+     * @param id Motor Nummer
+     * @param delta Positions-Delta
+     */
+    //% blockId=robotPositionDeltaBlock
+    //% weight=54
+    //% block="Drehe %id für %delta Umdrehungen"
+    //% group="Roboter"
+    //% inlineInputMode=inline
+    export function robotPositionDeltaBlock(id: RobotMotors, delta: number): void {
+        if (id == RobotMotors.MotorLinks) {
+            motorPositionDeltaBlock(DCMotors.Motor1, -1.0 * delta)
+        } else if (id == RobotMotors.MotorRechts) {
+            motorPositionDeltaBlock(DCMotors.Motor3, delta)
+        }
+    }
+
+    //*********************************************************************************************************************************************************************
+    /**
+     * Roboter Geschwindigkeit
+     * @param speed_left Geschwindigkeit links
+     * @param speed_right Geschwindigkeit rechts
+     */
+    //% blockId=roboterSpeedBlock
+    //% weight=55
+    //% block="Roboter Geschwindigkeit links %speed_left und rechts %speed_right rpm"
+    //% group="Roboter"
+    //% inlineInputMode=inline
+    export function roboterSpeedBlock(speed_left: number, speed_right: number): void {
+        motorSpeedBlock(DCMotors.Motor1, -1.0 * speed_left)
+        motorSpeedBlock(DCMotors.Motor3, speed_right)
     }
 
     //*********************************************************************************************************************************************************************
