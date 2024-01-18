@@ -10,7 +10,7 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "stokys.ts"
+        "Stokys.ts"
     ],
     "testFiles": [
         "test.ts"
