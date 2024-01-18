@@ -433,7 +433,7 @@ namespace stokys {
      */
     //% blockId=servoPWMBlock
     //% weight=68
-    //% block="Konfiguriere %id PWM mit Periode %periode s und Pulsdauer von %pulse_min bis %pulse_max s"
+    //% block="konfiguriere %id PWM mit Periode %periode s und Pulsdauer von %pulse_min bis %pulse_max s"
     //% group="Servos"
     //% inlineInputMode=inline
     export function servoPWMBlock(id: ServoMotors, period: number, pulse_min: number, pulse_max: number): void {
