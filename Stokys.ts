@@ -221,8 +221,8 @@ namespace stokys {
     //% group="Roboter"
     //% inlineInputMode=inline
     export function roboterSpeedBlock(speed_left: number, speed_right: number): void {
-        motorSpeedBlock(DCMotors.Motor1, -1.0 * speed_left)
-        motorSpeedBlock(DCMotors.Motor3, speed_right)
+        motorSpeedBlock(DCMotors.Motor1, speed_left)
+        motorSpeedBlock(DCMotors.Motor3, -1.0 * speed_right)
     }
 
 
