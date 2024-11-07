@@ -41,6 +41,7 @@ enum AnalogInput {
 enum DistanceSensor {
     Sensor1 = 0,
     Sensor2 = 1,
+    Sensor3 = 2,
 }
 
 /**
