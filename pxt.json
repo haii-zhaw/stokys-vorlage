@@ -10,13 +10,13 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "stokys.ts"
+        "Stokys.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
     "targetVersions": {
-        "target": "6.0.19",
+        "target": "6.0.22",
         "targetId": "microbit"
     },
     "supportedTargets": [
