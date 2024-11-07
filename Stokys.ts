@@ -38,8 +38,8 @@ enum DCMotors {
 }
 
 enum RobotMotors {
-    MotorLinks = 0,
-    MotorRechts = 2,
+    MotorLinks = 2,
+    MotorRechts = 0,
 }
 
 enum MotorControlMode {
@@ -54,8 +54,8 @@ enum AnalogInput {
 }
 
 enum DistanceSensor {
-    Sensor1 = 0,
-    Sensor2 = 1,
+    Sensor1 = 1,
+    Sensor2 = 0,
 }
 
 /**
